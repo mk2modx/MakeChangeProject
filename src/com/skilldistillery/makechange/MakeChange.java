@@ -15,7 +15,7 @@ public class MakeChange {
 		
 		System.out.println("Enter Tendered Amount : ");
 		tendered = kb.nextDouble();
-		
+		kb.close();
 		fullChange = tendered - totalCost;
 		fullChange = fullChange + 0.0005;
 		
@@ -30,8 +30,10 @@ public class MakeChange {
 			System.out.println(tenDollar + " : Tens");
 			int fiveDollar = fivebills(dollar , twentyDollar , tenDollar);
 			System.out.println(fiveDollar + " : Fives");
+			int oneDollar = oneBill(dollar);
+			System.out.println(oneDollar + " : Ones");
 			
-		System.out.println(dollar / 100 + " : Dollars");
+//		System.out.println(dollar / 100 + " : Dollars");
 		
 		int coins = (int)(change1 - dollar);
 
@@ -67,5 +69,10 @@ public class MakeChange {
 		int five = (int) (dollar / 100) - ((twentyDollar * 20) + (tenDollar * 10));
 		five = (five - (five % 5)) / 5;
 		return five;
+	}
+	public static int oneBill( double dollar) {
+		int one = (int) (dollar / 100);
+		one = one % 5;
+		return one;
 	}
 }
