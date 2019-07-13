@@ -19,44 +19,42 @@ public class MakeChange {
 		if (totalCost > tendered) {
 			System.out.println("You don't have enough money.");
 
-		} // if else for error and breaking  after error
+		} // if else for error and breaking after error
 		else {
 
-		fullChange = tendered - totalCost;
-		fullChange = fullChange + 0.0005; // to satisfy roundup 
-		System.out.print("Total Change :$");
-		System.out.printf("%.2f%n", fullChange);
+			fullChange = tendered - totalCost;
+			fullChange = fullChange + 0.0005; // to satisfy roundup
 
-		double change1 = fullChange * 100;
-		double dollar = (change1 - (change1 % 100));
+			System.out.print("Total Change :$");
+			System.out.printf("%.2f%n", fullChange);
+			// show total with only 2 digits for pennies
 
-		int twentyDollar = bills(dollar);
-		System.out.println(twentyDollar + " : Twenties");
-		int tenDollar = tenbills(dollar, twentyDollar);
-		System.out.println(tenDollar + " : Tens");
-		int fiveDollar = fivebills(dollar, twentyDollar, tenDollar);
-		System.out.println(fiveDollar + " : Fives");
-		int oneDollar = oneBill(dollar);
-		System.out.println(oneDollar + " : Ones");
+			// multiplied by 100 to separate pennies
+			double change1 = fullChange * 100;
+			double dollar = (change1 - (change1 % 100));
 
-//		System.out.println(dollar / 100 + " : Dollars");
+			// used passed by value to continue using the remainder amounts
+			int twentyDollar = bills(dollar);
+			System.out.println(twentyDollar + " : Twenties");
+			int tenDollar = tenbills(dollar, twentyDollar);
+			System.out.println(tenDollar + " : Tens");
+			int fiveDollar = fivebills(dollar, twentyDollar, tenDollar);
+			System.out.println(fiveDollar + " : Fives");
+			int oneDollar = oneBill(dollar);
+			System.out.println(oneDollar + " : Ones");
 
-		int coins = (int) (change1 - dollar);
-
-		int quarters = (coins - (coins % 25)) / 25;
-		System.out.println(quarters + " : Quarters");
-
-		int coins2 = (coins - (quarters * 25));
-
-		int dimes = (coins2 - (coins2 % 10)) / 10;
-		System.out.println(dimes + " : Dimes");
-
-		int coins3 = (coins2 - (dimes * 10));
-		int nickles = (coins3 - (coins % 5)) / 5;
-
-		System.out.println(nickles + " : Nickles");
-
-		System.out.println((coins3 - (nickles * 5)) + " : Pennies");
+			// casted to double to (int) for the remaining coins
+			int coins = (int) (change1 - dollar);
+			int quarters = (coins - (coins % 25)) / 25;
+			// subtracted remainder then divided value / similar calculation for the rest
+			System.out.println(quarters + " : Quarters");
+			int coins2 = (coins - (quarters * 25));
+			int dimes = (coins2 - (coins2 % 10)) / 10;
+			System.out.println(dimes + " : Dimes");
+			int coins3 = (coins2 - (dimes * 10));
+			int nickles = (coins3 - (coins % 5)) / 5;
+			System.out.println(nickles + " : Nickles");
+			System.out.println((coins3 - (nickles * 5)) + " : Pennies");
 		}
 	}
 
