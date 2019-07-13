@@ -25,7 +25,11 @@ public class MakeChange {
 		double dollar = (change1 - (change1 % 100));
 			
 			int twentyDollar = bills(dollar);
-			System.out.println(twentyDollar);
+			System.out.println(twentyDollar + " : Twenties");	
+			int tenDollar = tenbills(dollar , twentyDollar);
+			System.out.println(tenDollar + " : Tens");
+			int fiveDollar = fivebills(dollar , twentyDollar , tenDollar);
+			System.out.println(fiveDollar + " : Fives");
 			
 		System.out.println(dollar / 100 + " : Dollars");
 		
@@ -55,8 +59,13 @@ public class MakeChange {
 			return twenty;	
 }
 	public static int tenbills( double dollar, int twentyDollar) {
-	int ten = 0;
-		
+	int ten = (int) (dollar / 100) - (twentyDollar * 20);
+		ten = (ten - (ten % 10)) / 10;
 		return ten;
+	}
+	public static int fivebills( double dollar, int twentyDollar, int tenDollar) {
+		int five = (int) (dollar / 100) - ((twentyDollar * 20) + (tenDollar * 10));
+		five = (five - (five % 5)) / 5;
+		return five;
 	}
 }
